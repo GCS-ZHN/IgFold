@@ -49,9 +49,14 @@ class IgFoldRunner():
 
                 ckpt_path = os.path.join(
                     project_path,
-                    "trained_models/IgFold/*.ckpt",
+                    "trained_models/IgFold",
                 )
-                model_ckpts = list(glob(ckpt_path))
+
+                model_ckpts = list(glob(f"{ckpt_path}/*.ckpt"))
+                if len(model_ckpts) < num_models:
+                    raise ValueError(
+                        f"Only {len(model_ckpts)} pre-trained models found. \
+                        Please download more to {ckpt_path}")
 
             model_ckpts = list(sorted(model_ckpts))[:num_models]
 
