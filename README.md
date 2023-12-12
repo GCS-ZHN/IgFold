@@ -28,6 +28,14 @@ $ git clone git@github.com:Graylab/IgFold.git
 $ pip install IgFold
 ```
 
+**Note**: Due to the missing of weight file in this source repository, you should download and extract weight file from PyPI first before building from source code.
+```bash
+pip download igfold --no-deps --dest . --no-binary :all:
+tar -zxvf igfold-*.tar.gz
+mv igfold-*/igfold/trained_models/IgFold igfold/trained_models/IgFold
+rm -rf igfold-*
+```
+
 ### Refinement
 
 Two refinement methods are supported for IgFold predictions. To follow the manuscript, PyRosetta should be installed following the instructions [here](http://pyrosetta.org/downloads). If PyRosetta is not installed, refinement with OpenMM will be attempted. For this option, OpenMM must be installed and configured before running IgFold as follows:
